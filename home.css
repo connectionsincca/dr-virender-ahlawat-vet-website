@@ -4845,7 +4845,7 @@ footer {
 }
 
 .slide-in-up {
-  animation: slideInUp 1.5s ease-out;
+  animation: slideInUp 1s linear;
 }
 
 /* Initially Hide Animated Elements */
