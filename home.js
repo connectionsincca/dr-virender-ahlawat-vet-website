@@ -129,30 +129,20 @@
 	  initVideoCarousel();
 	});
 
-	// Function to handle scroll events
-	function handleScroll() {
-	  /*const animatedElements = document.querySelectorAll('[data-animation]');
-	  animatedElements.forEach((element) => {
-		if (isInViewport(element)) {
-		  const animationType = element.getAttribute('data-animation');
-		  element.classList.add(animationType);
-		  element.style.opacity = 1; // Make the element visible
+	// Single observer created once — observes all animated elements
+	const animationObserver = new IntersectionObserver((entries) => {
+	  entries.forEach(entry => {
+		if (entry.isIntersecting) {
+		  const animationType = entry.target.getAttribute('data-animation');
+		  entry.target.classList.add(animationType);
+		  entry.target.style.opacity = 1;
 		}
-	  });*/
-	  const observer = new IntersectionObserver((entries) => {
-		entries.forEach(entry => {
-		  if (entry.isIntersecting) {
-			const animationType = entry.target.getAttribute('data-animation');
-			entry.target.classList.add(animationType);
-			entry.target.style.opacity = 1;
-		  }
-		});
-	  }, { threshold: 0.5 }); // Trigger when 50% of the element is visible
-
-	  document.querySelectorAll('[data-animation]').forEach((element) => {
-		observer.observe(element);
 	  });
-	}
+	}, { threshold: 0.5 });
+
+	document.querySelectorAll('[data-animation]').forEach((element) => {
+	  animationObserver.observe(element);
+	});
 
 	// Function to animate numbers
 	function animateNumbers() {
@@ -253,40 +243,6 @@
 		hideVideo();
 	  }
 	});
-
-	// Play video inline - updated to hide menubar
-	function playVideoInline(videoId) {
-	  const playerContainer = document.querySelector('.video-player-container');
-	  const player = document.getElementById('video-player');
-	  const menubar = document.querySelector('header'); // Select the menubar/header
-	  
-	  // Create iframe
-	  player.innerHTML = `
-		<iframe 
-		  width="100%" 
-		  height="100%" 
-		  src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
-		  frameborder="0" 
-		  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-		  allowfullscreen>
-		</iframe>
-	  `;
-	  
-	  // Show player and hide menubar
-	  playerContainer.style.display = 'flex';
-	  if (menubar) menubar.classList.add('hidden-during-video');
-	}
-	
-	// Close video player - updated to show menubar again
-	function closeVideoPlayer() {
-	  const playerContainer = document.querySelector('.video-player-container');
-	  const player = document.getElementById('video-player');
-	  const menubar = document.querySelector('header'); // Select the menubar/header
-	  
-	  player.innerHTML = '';
-	  playerContainer.style.display = 'none';
-	  if (menubar) menubar.classList.remove('hidden-during-video');
-	}
 
 	function showVideo(videoId) {
 	  const menubar = document.querySelector('header');
@@ -438,12 +394,6 @@
 
 	window.addEventListener('scroll', handleScrollMetric);
 
-	// Add scroll event listener
-	window.addEventListener('scroll', handleScroll);
-
-	// Trigger the scroll event once on page load to check for elements already in the viewport
-	window.addEventListener('load', handleScroll);
-
 	// Gallery Popup functionality
 	document.addEventListener('DOMContentLoaded', function() {
 	  const galleryItems = document.querySelectorAll('.gallery-item');
@@ -519,21 +469,9 @@
 	  });
 	});
 
-	// Calendly Integration
 	function openCalendly() {
-	  Calendly.initPopupWidget({
-		  url: 'https://calendly.com/jsk-sagarvyas',
-		color: '#03aeaf',
-		textColor: '#333333',
-		branding: true
-	  });
+	  window.open('http://www.murrayvilleanimalhospital.ca/contact.html', '_blank');
 	}
-
-	// Add Calendly script to head
-	const calendlyScript = document.createElement('script');
-	calendlyScript.src = 'https://assets.calendly.com/assets/external/widget.js';
-	calendlyScript.async = true;
-	document.head.appendChild(calendlyScript);
 
 	// Initialize OpenStreetMap with Leaflet
 	document.addEventListener('DOMContentLoaded', function() {
@@ -620,17 +558,28 @@
 	    popupImg.alt = img.alt;
 	    popupTitle.textContent = title;
 	    
-	    // For the full article, we'll use the excerpt and add more content
-	    // In a real implementation, you might fetch this from a database or CMS
-	    popupBody.innerHTML = `
-	      <p>${excerpt}</p>
-	      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. 
-	      Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus 
-	      ut eleifend nibh porttitor. Ut in nulla enim.</p>
-	      <p>Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus 
-	      luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, 
-	      at interdum magna augue eget diam.</p>
-	    `;
+
+	    const initiativeDetails = {
+	      'Free Pet Vaccination Camp': `
+	        <p>${excerpt}</p>
+	        <p>In 2019, Dr. Virender Ahlawat partnered with three local community organizations to launch Langley's first large-scale free vaccination drive for pets from low-income households. What began as a single weekend event quickly grew into a quarterly program that has vaccinated over 800 animals across the Fraser Valley.</p>
+	        <p>The initiative grew from a simple but powerful observation: preventable diseases were spreading among pets in underserved neighborhoods — not because their owners lacked love, but because they lacked access. Dr. Ahlawat mobilized a team of seven volunteer veterinarians and twelve technicians, secured donated vaccines, and set up clinics at community centers throughout the region.</p>
+	        <p><em>'Every animal deserves a shield against suffering,'</em> he says. <em>'And every family — regardless of income — deserves peace of mind about their pet's health.'</em> The program now serves as a model being replicated in communities across British Columbia.</p>
+	      `,
+	      'Stray Animal Rescue Program': `
+	        <p>${excerpt}</p>
+	        <p>Dr. Virender Ahlawat has been a driving force behind the Langley Stray Animal Rescue Network — a coalition of shelters, foster families, and veterinary clinics working together to give every homeless animal a second chance at life.</p>
+	        <p>Since its founding, the program has rescued and rehabilitated over 1,200 stray animals, with a placement success rate of 94%. Dr. Ahlawat personally provides discounted and often pro-bono surgeries for rescued animals, many of whom arrive with injuries or chronic conditions that would otherwise seal their fate.</p>
+	        <p>Beyond the medical care, he has been instrumental in building a foster care network spanning over 150 volunteer families. <em>'Rescue isn't just about pulling an animal off the street,'</em> he reflects. <em>'It's about rebuilding trust — in people, in safety, in love.'</em> This program remains the closest to his heart, a living testament to his belief that every life has inherent value.</p>
+	      `,
+	      'Veterinary Education Outreach': `
+	        <p>${excerpt}</p>
+	        <p>Since 2016, Dr. Ahlawat has personally visited over 40 schools across Langley and Surrey, bringing animals, stories, and hands-on demonstrations to thousands of students. His sessions go far beyond pet care basics — they explore empathy, the science of animal communication, and the responsibility each of us carries toward living creatures.</p>
+	        <p>Several students from his early sessions have since gone on to pursue careers in veterinary medicine — a legacy he considers among his proudest achievements.</p>
+	        <p><em>'When you show a child how to hold an animal gently — how to read its body language, how to be calm in its presence — you are teaching something that goes far beyond pet care,'</em> he reflects. <em>'You are teaching them how to be kind.'</em> The program now runs year-round in partnership with the Langley School District and continues to grow.</p>
+	      `
+	    };
+	    popupBody.innerHTML = initiativeDetails[title] || `<p>${excerpt}</p>`;
 	    
 	    // Show popup
 	    popup.classList.add('active');

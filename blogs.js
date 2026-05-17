@@ -106,12 +106,3 @@ document.querySelectorAll('.blogs-menu h3').forEach(header => {
   });
 	});
 
-// Add Calendly function to blogs.js
-function openCalendly() {
-  Calendly.initPopupWidget({
-	  url: 'https://calendly.com/jsk-sagarvyas',
-    color: '#03aeaf',
-    textColor: '#333333',
-    branding: true
-  });
-}
