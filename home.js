@@ -580,7 +580,30 @@
         <p>These students shadow experienced veterinarians, observe procedures, assist with routine care, and ask questions freely. We believe the best way to inspire the next generation is to open our doors and let them see what this work actually looks like — not from a textbook, but from the clinic floor.</p>
         <p>The experience teaches them far more than veterinary techniques. It teaches them patience, compassion, and how to be present with an animal in distress. It shows them what it means to take responsibility for a life.</p>
         <p><em>"We are not just training future veterinarians,"</em> Dr. Ahlawat reflects. <em>"We are helping shape the kind of people they will become."</em> And no, we do not charge them for this experience. An open door is the only investment we ask for in return.</p>
-      `
+      `,
+      'The Night We Refused to Give Up': `
+        <p>${excerpt}</p>
+        <p>It felt almost unreal — like a scene from a movie. A guard dog was carried through our doors, covered in blood, barely breathing. He had been protecting a property when someone trespassing — possibly under the influence — attacked him with a knife. He had been stabbed more than 50 times.</p>
+        <p>Other hospitals had already refused to treat him. They believed he could not be saved. But when I looked at that dog, I saw a life that was still fighting. And I decided we would fight too.</p>
+        <p>We operated for four to five hours. The surgery was long and difficult. But when it was over, he was alive.</p>
+        <p>Cases like this one stay with a veterinarian long after the wounds have healed. They remind you of why you chose this profession — not for the routine, but for the moments that test your limits and ask you to decide: will you take responsibility, even when no one else will?</p>
+        <p>That dog survived. And that decision — to operate when others had given up — is one I will never regret.</p>
+      `,
+      'Beating Parvo, Defying the Odds': `
+        <p>${excerpt}</p>
+        <p>Parvovirus is a brutal disease. In puppies, it attacks the digestive system, destroys the immune response, and kills with terrifying speed. Even with full treatment, survival is not guaranteed. Standard care can cost a family around $5,000 — a price far beyond what most rescue organizations can afford.</p>
+        <p>When three rescue puppies arrived at our clinic with confirmed Parvo, we knew the odds. We also knew that walking away was not something we were willing to do.</p>
+        <p>We treated all three puppies for under $500 total. We kept them hydrated, managed their symptoms, and monitored them through the most critical hours. It was intensive, uncertain, and emotionally exhausting.</p>
+        <p>Two of the three puppies survived.</p>
+        <p>Today, those same puppies come back to Murrayville Animal Hospital for their vaccines and routine check-ups. They are healthy. They are thriving. And every time they walk through our doors, wagging their tails, it is a reminder of why this work matters — and why cost should never be the reason a life is surrendered.</p>
+      `,
+      'Every Day, One More Life': `
+        <p>${excerpt}</p>
+        <p>There is no single story that captures this part of our work — because it is not one story. It is hundreds of them, unfolding quietly, one at a time, every single day.</p>
+        <p>On any given day at Murrayville Animal Hospital, we may take on one or two rescue cases alongside our regular appointments. A spay procedure for a rescued stray. Medical treatment for an abandoned dog whose previous owner could not afford the care — or whose circumstances we may never fully know. Life, as Dr. Ahlawat often says, is complicated. People face hardships we cannot always see. But regardless of what brought an animal to our door, the animal still deserves a chance.</p>
+        <p>Some of the most quietly moving cases have been pregnant rescue dogs — animals pulled from euthanasia lists who arrived frightened and unwell, and who later gave birth to healthy litters of puppies. To watch a dog who nearly did not survive become a mother is something that does not easily leave you.</p>
+        <p>This daily work is not announced. It does not make headlines. But over the years, it adds up to hundreds of lives — dogs who are alive today because someone chose, each day, to show up and try.</p>
+        <p>That, more than anything, is what community service looks like from the inside.</p>
     };
     popupBody.innerHTML = initiativeDetails[title] || `<p>${excerpt}</p>`;
 	    
