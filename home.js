@@ -593,7 +593,7 @@
         <p>${excerpt}</p>
         <p>Parvovirus is one of the hardest things I face in rescue work. It hits young puppies fast and hard — attacking their digestive system, destroying their ability to fight infection. Even with full treatment, survival is not guaranteed. Standard care can cost around $5,000 — far beyond what most rescue organizations can manage.</p>
         <p>When three rescue puppies arrived at my clinic with confirmed Parvo, I knew exactly how serious it was. I also knew I was not going to turn them away.</p>
-        <p>I treated all three for under $500 total. I kept them hydrated, monitored their symptoms through the most critical hours, and did everything I could. It was exhausting and uncertain. With Parvo, you work hard and then you wait — and sometimes, the outcome still breaks your heart.</p>
+        <p>I kept them hydrated, monitored their symptoms through the most critical hours, and did everything I could. It was exhausting and uncertain. With Parvo, you work hard and then you wait — and sometimes, the outcome still breaks your heart.</p>
         <p>Two of the three puppies survived.</p>
         <p>Today, those two come back to my clinic for their vaccines and check-ups. They are healthy. They are thriving. And every time they walk through my door, wagging their tails, I feel it — that feeling that only this work gives you. The feeling that a life exists today because you refused to give up on it.</p>
       `,
