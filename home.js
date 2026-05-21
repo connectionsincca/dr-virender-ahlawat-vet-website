@@ -560,26 +560,29 @@
 	    
 
 	    const initiativeDetails = {
-	      'Free Pet Vaccination Camp': `
-	        <p>${excerpt}</p>
-	        <p>In 2019, Dr. Virender Ahlawat partnered with three local community organizations to launch Langley's first large-scale free vaccination drive for pets from low-income households. What began as a single weekend event quickly grew into a quarterly program that has vaccinated over 800 animals across the Fraser Valley.</p>
-	        <p>The initiative grew from a simple but powerful observation: preventable diseases were spreading among pets in underserved neighborhoods — not because their owners lacked love, but because they lacked access. Dr. Ahlawat mobilized a team of seven volunteer veterinarians and twelve technicians, secured donated vaccines, and set up clinics at community centers throughout the region.</p>
-	        <p><em>'Every animal deserves a shield against suffering,'</em> he says. <em>'And every family — regardless of income — deserves peace of mind about their pet's health.'</em> The program now serves as a model being replicated in communities across British Columbia.</p>
-	      `,
-	      'Stray Animal Rescue Program': `
-	        <p>${excerpt}</p>
-	        <p>Dr. Virender Ahlawat has been a driving force behind the Langley Stray Animal Rescue Network — a coalition of shelters, foster families, and veterinary clinics working together to give every homeless animal a second chance at life.</p>
-	        <p>Since its founding, the program has rescued and rehabilitated over 1,200 stray animals, with a placement success rate of 94%. Dr. Ahlawat personally provides discounted and often pro-bono surgeries for rescued animals, many of whom arrive with injuries or chronic conditions that would otherwise seal their fate.</p>
-	        <p>Beyond the medical care, he has been instrumental in building a foster care network spanning over 150 volunteer families. <em>'Rescue isn't just about pulling an animal off the street,'</em> he reflects. <em>'It's about rebuilding trust — in people, in safety, in love.'</em> This program remains the closest to his heart, a living testament to his belief that every life has inherent value.</p>
-	      `,
-	      'Veterinary Education Outreach': `
-	        <p>${excerpt}</p>
-	        <p>Since 2016, Dr. Ahlawat has personally visited over 40 schools across Langley and Surrey, bringing animals, stories, and hands-on demonstrations to thousands of students. His sessions go far beyond pet care basics — they explore empathy, the science of animal communication, and the responsibility each of us carries toward living creatures.</p>
-	        <p>Several students from his early sessions have since gone on to pursue careers in veterinary medicine — a legacy he considers among his proudest achievements.</p>
-	        <p><em>'When you show a child how to hold an animal gently — how to read its body language, how to be calm in its presence — you are teaching something that goes far beyond pet care,'</em> he reflects. <em>'You are teaching them how to be kind.'</em> The program now runs year-round in partnership with the Langley School District and continues to grow.</p>
-	      `
-	    };
-	    popupBody.innerHTML = initiativeDetails[title] || `<p>${excerpt}</p>`;
+      'Monthly Community Wellness Day': `
+        <p>${excerpt}</p>
+        <p>Every first Tuesday of the month, Dr. Virender Ahlawat opens the doors of Murrayville Animal Hospital to the wider community. On these days, pets receive a full physical examination and wellness check-up — completely free of charge. Families are only asked to pay for any vaccines their pet receives that day.</p>
+        <p>The idea is straightforward but powerful: preventive care should never be beyond reach. When financial barriers prevent pet owners from seeking regular check-ups, small health issues become serious ones. By removing that barrier once a month, we keep animals healthier and give families peace of mind — without letting cost become the deciding factor.</p>
+        <p><em>"We want every pet in this community to have a fair chance at a healthy life,"</em> Dr. Ahlawat explains. <em>"This initiative is our way of saying: come in. We are here for you."</em></p>
+        <p>The program has become a cornerstone of Murrayville Animal Hospital's relationship with the Langley community — a quiet but meaningful commitment that shows up, reliably, on the first Tuesday of every month.</p>
+      `,
+      'Stray Animal Rescue Program': `
+        <p>${excerpt}</p>
+        <p>We actively work with rescue organizations that save dogs from euthanasia lists — animals who, in many cases, have been abandoned, neglected, or left with medical conditions that make adoption difficult. Many arrive with serious health issues: dental disease, viral infections, injuries, or other untreated conditions. Regardless of the reason they were left behind, the animal still deserves a chance.</p>
+        <p>To give these animals hope, we provide treatment at <strong>nearly 70% below standard costs — almost at cost price</strong>. We do not make a profit from these cases. That part of our work is not business. It is about saving lives.</p>
+        <p>Some stories stay with you. Years ago, a guard dog arrived at our clinic after being attacked by an intruder — stabbed more than 50 times. He was carried in, covered in blood, barely alive. Other hospitals had turned him away. We operated for four to five hours. And we saved him.</p>
+        <p>More recently, we treated three puppies suffering from Parvovirus — a severe, often fatal viral infection. Standard treatment can cost around $5,000. We treated all three for under $500. Two of them survived. Today, those same puppies come back to us for vaccines and routine check-ups. Seeing animals who once had almost no chance now living healthy, normal lives brings a feeling that is hard to describe. It is happiness. It is fulfillment. It is the feeling that your profession has given you an opportunity to make a difference — and that you chose to embrace it.</p>
+      `,
+      'Nurturing Future Veterinarians': `
+        <p>${excerpt}</p>
+        <p>Every week, we welcome Grade 11 and Grade 12 students — young people considering careers in veterinary science, completing volunteer hours, or simply curious about the field — into our clinic for hands-on exposure to the profession.</p>
+        <p>These students shadow experienced veterinarians, observe procedures, assist with routine care, and ask questions freely. We believe the best way to inspire the next generation is to open our doors and let them see what this work actually looks like — not from a textbook, but from the clinic floor.</p>
+        <p>The experience teaches them far more than veterinary techniques. It teaches them patience, compassion, and how to be present with an animal in distress. It shows them what it means to take responsibility for a life.</p>
+        <p><em>"We are not just training future veterinarians,"</em> Dr. Ahlawat reflects. <em>"We are helping shape the kind of people they will become."</em> And no, we do not charge them for this experience. An open door is the only investment we ask for in return.</p>
+      `
+    };
+    popupBody.innerHTML = initiativeDetails[title] || `<p>${excerpt}</p>`;
 	    
 	    // Show popup
 	    popup.classList.add('active');
