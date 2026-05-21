@@ -562,48 +562,49 @@
 	    const initiativeDetails = {
       'Monthly Community Wellness Day': `
         <p>${excerpt}</p>
-        <p>Every first Tuesday of the month, Dr. Virender Ahlawat opens the doors of Murrayville Animal Hospital to the wider community. On these days, pets receive a full physical examination and wellness check-up — completely free of charge. Families are only asked to pay for any vaccines their pet receives that day.</p>
-        <p>The idea is straightforward but powerful: preventive care should never be beyond reach. When financial barriers prevent pet owners from seeking regular check-ups, small health issues become serious ones. By removing that barrier once a month, we keep animals healthier and give families peace of mind — without letting cost become the deciding factor.</p>
-        <p><em>"We want every pet in this community to have a fair chance at a healthy life,"</em> Dr. Ahlawat explains. <em>"This initiative is our way of saying: come in. We are here for you."</em></p>
-        <p>The program has become a cornerstone of Murrayville Animal Hospital's relationship with the Langley community — a quiet but meaningful commitment that shows up, reliably, on the first Tuesday of every month.</p>
+        <p>Every first Tuesday of the month, I open the doors of Murrayville Animal Hospital to the community. That day, every pet gets a full physical examination and wellness check-up — completely free of charge. Families are only asked to pay for the vaccines their pet needs.</p>
+        <p>The reason is simple. I have seen too many cases where a small, preventable problem became a serious one — not because the owner did not care, but because the cost of a routine visit felt like too much. I never want a family to have to make that choice.</p>
+        <p>So once a month, that barrier disappears. You come in, your pet gets looked after, and we have a conversation about their health — no financial pressure, no hesitation. Just care.</p>
+        <p>This initiative has quietly become one of the things I am most proud of. It is not grand or dramatic. It just shows up, reliably, on the first Tuesday of every month. And that consistency is exactly the kind of relationship I want to have with this community.</p>
       `,
       'Stray Animal Rescue Program': `
         <p>${excerpt}</p>
-        <p>We actively work with rescue organizations that save dogs from euthanasia lists — animals who, in many cases, have been abandoned, neglected, or left with medical conditions that make adoption difficult. Many arrive with serious health issues: dental disease, viral infections, injuries, or other untreated conditions. Regardless of the reason they were left behind, the animal still deserves a chance.</p>
-        <p>To give these animals hope, we provide treatment at <strong>nearly 70% below standard costs — almost at cost price</strong>. We do not make a profit from these cases. That part of our work is not business. It is about saving lives.</p>
-        <p>Some stories stay with you. Years ago, a guard dog arrived at our clinic after being attacked by an intruder — stabbed more than 50 times. He was carried in, covered in blood, barely alive. Other hospitals had turned him away. We operated for four to five hours. And we saved him.</p>
-        <p>More recently, we treated three puppies suffering from Parvovirus — a severe, often fatal viral infection. Standard treatment can cost around $5,000. We treated all three for under $500. Two of them survived. Today, those same puppies come back to us for vaccines and routine check-ups. Seeing animals who once had almost no chance now living healthy, normal lives brings a feeling that is hard to describe. It is happiness. It is fulfillment. It is the feeling that your profession has given you an opportunity to make a difference — and that you chose to embrace it.</p>
+        <p>I work alongside rescue organizations that save dogs from euthanasia lists — animals who have been abandoned, neglected, or left with medical conditions that make adoption difficult. Many arrive with serious health issues: dental disease, viral infections, untreated injuries. We often do not know their full story. Life is complicated. But whatever brought an animal to my door, one thing is clear: they still deserve a chance.</p>
+        <p>I provide treatment for these animals at nearly 70% below standard cost — almost at cost price. I do not profit from these cases. That part of my work is not business. It is the reason I became a veterinarian.</p>
+        <p>When a rescued dog is sick or visibly unwell, most families hesitate to adopt. I understand that. That is exactly why treatment matters. A healthy animal has a future. A sick one, without intervention, often does not.</p>
+        <p>Over the years, I have saved many dogs who were once on euthanasia lists — including pregnant females who later gave birth to healthy litters. Watching a dog who nearly did not survive become a mother is something I will never take for granted.</p>
       `,
       'Nurturing Future Veterinarians': `
         <p>${excerpt}</p>
-        <p>Every week, we welcome Grade 11 and Grade 12 students — young people considering careers in veterinary science, completing volunteer hours, or simply curious about the field — into our clinic for hands-on exposure to the profession.</p>
-        <p>These students shadow experienced veterinarians, observe procedures, assist with routine care, and ask questions freely. We believe the best way to inspire the next generation is to open our doors and let them see what this work actually looks like — not from a textbook, but from the clinic floor.</p>
-        <p>The experience teaches them far more than veterinary techniques. It teaches them patience, compassion, and how to be present with an animal in distress. It shows them what it means to take responsibility for a life.</p>
-        <p><em>"We are not just training future veterinarians,"</em> Dr. Ahlawat reflects. <em>"We are helping shape the kind of people they will become."</em> And no, we do not charge them for this experience. An open door is the only investment we ask for in return.</p>
+        <p>Every week, I welcome Grade 11 and Grade 12 students into our clinic — young people considering veterinary medicine, completing volunteer hours, or simply curious about what this work really looks like. I open the door and let them see it: the procedures, the decisions, the moments of uncertainty, and the moments of relief.</p>
+        <p>What I want them to walk away with is not just knowledge about animals. I want them to understand what it means to take responsibility for a life. To stay calm when things are hard. To care about the outcome even when no one is watching.</p>
+        <p>I do not charge them for this experience. Not a single dollar. Because I remember what it felt like to be young and passionate and unsure whether there was room for me in this field. If I can be the person who opens that door for someone else, that is more than enough.</p>
+        <p>Several students who came through our clinic are now pursuing veterinary careers. When I hear that, I feel something I cannot quite put into words. Something like legacy — the quiet knowledge that the work continues beyond you.</p>
       `,
       'The Night We Refused to Give Up': `
         <p>${excerpt}</p>
-        <p>It felt almost unreal — like a scene from a movie. A guard dog was carried through our doors, covered in blood, barely breathing. He had been protecting a property when someone trespassing — possibly under the influence — attacked him with a knife. He had been stabbed more than 50 times.</p>
-        <p>Other hospitals had already refused to treat him. They believed he could not be saved. But when I looked at that dog, I saw a life that was still fighting. And I decided we would fight too.</p>
-        <p>We operated for four to five hours. The surgery was long and difficult. But when it was over, he was alive.</p>
-        <p>Cases like this one stay with a veterinarian long after the wounds have healed. They remind you of why you chose this profession — not for the routine, but for the moments that test your limits and ask you to decide: will you take responsibility, even when no one else will?</p>
-        <p>That dog survived. And that decision — to operate when others had given up — is one I will never regret.</p>
+        <p>I still remember the moment he was carried through our doors. A guard dog, barely conscious, covered in blood. He had been protecting a property when someone — possibly under the influence — attacked him with a knife. He had been stabbed more than 50 times.</p>
+        <p>It felt almost unreal. Like something from a film, not a clinic in Langley.</p>
+        <p>Other hospitals had already turned him away. They believed it was too late. When I examined him, I understood why they said that. But I also saw that he was still here, still fighting. And I made a decision: so would we.</p>
+        <p>We operated for four to five hours. It was one of the longest and most intense surgeries I have performed. But when it was over, he was alive.</p>
+        <p>Cases like this stay with you long after the wounds have healed. They remind you that this profession is not just about medicine — it is about the choice to show up for a life when no one else will. That night, I made that choice. And it is one I will never regret.</p>
       `,
       'Beating Parvo, Defying the Odds': `
         <p>${excerpt}</p>
-        <p>Parvovirus is a brutal disease. In puppies, it attacks the digestive system, destroys the immune response, and kills with terrifying speed. Even with full treatment, survival is not guaranteed. Standard care can cost a family around $5,000 — a price far beyond what most rescue organizations can afford.</p>
-        <p>When three rescue puppies arrived at our clinic with confirmed Parvo, we knew the odds. We also knew that walking away was not something we were willing to do.</p>
-        <p>We treated all three puppies for under $500 total. We kept them hydrated, managed their symptoms, and monitored them through the most critical hours. It was intensive, uncertain, and emotionally exhausting.</p>
+        <p>Parvovirus is one of the hardest things I face in rescue work. It hits young puppies fast and hard — attacking their digestive system, destroying their ability to fight infection. Even with full treatment, survival is not guaranteed. Standard care can cost around $5,000 — far beyond what most rescue organizations can manage.</p>
+        <p>When three rescue puppies arrived at my clinic with confirmed Parvo, I knew exactly how serious it was. I also knew I was not going to turn them away.</p>
+        <p>I treated all three for under $500 total. I kept them hydrated, monitored their symptoms through the most critical hours, and did everything I could. It was exhausting and uncertain. With Parvo, you work hard and then you wait — and sometimes, the outcome still breaks your heart.</p>
         <p>Two of the three puppies survived.</p>
-        <p>Today, those same puppies come back to Murrayville Animal Hospital for their vaccines and routine check-ups. They are healthy. They are thriving. And every time they walk through our doors, wagging their tails, it is a reminder of why this work matters — and why cost should never be the reason a life is surrendered.</p>
+        <p>Today, those two come back to my clinic for their vaccines and check-ups. They are healthy. They are thriving. And every time they walk through my door, wagging their tails, I feel it — that feeling that only this work gives you. The feeling that a life exists today because you refused to give up on it.</p>
       `,
       'Every Day, One More Life': `
         <p>${excerpt}</p>
-        <p>There is no single story that captures this part of our work — because it is not one story. It is hundreds of them, unfolding quietly, one at a time, every single day.</p>
-        <p>On any given day at Murrayville Animal Hospital, we may take on one or two rescue cases alongside our regular appointments. A spay procedure for a rescued stray. Medical treatment for an abandoned dog whose previous owner could not afford the care — or whose circumstances we may never fully know. Life, as Dr. Ahlawat often says, is complicated. People face hardships we cannot always see. But regardless of what brought an animal to our door, the animal still deserves a chance.</p>
-        <p>Some of the most quietly moving cases have been pregnant rescue dogs — animals pulled from euthanasia lists who arrived frightened and unwell, and who later gave birth to healthy litters of puppies. To watch a dog who nearly did not survive become a mother is something that does not easily leave you.</p>
-        <p>This daily work is not announced. It does not make headlines. But over the years, it adds up to hundreds of lives — dogs who are alive today because someone chose, each day, to show up and try.</p>
-        <p>That, more than anything, is what community service looks like from the inside.</p>
+        <p>There is no single story that captures this part of my work — because it is not one story. It is hundreds of them, unfolding quietly, one at a time, every single day.</p>
+        <p>On any given day, alongside my regular appointments, I may take on one or two rescue cases. A spay for a stray who arrived frightened and alone. A treatment for an abandoned dog whose previous owner could not afford the care — or whose circumstances I may never fully know. I have stopped asking why animals end up the way they do. What I can control is what happens next.</p>
+        <p>Some of the most quietly moving cases I have handled were pregnant rescue dogs — animals pulled from euthanasia lists who arrived unwell and afraid, and who later gave birth to healthy litters. To watch a dog who nearly did not survive become a mother is something that does not easily leave you.</p>
+        <p>This work does not make headlines. I do not announce it. But over the years, it adds up — hundreds of lives, hundreds of second chances, hundreds of animals who are alive today because someone chose, each day, to show up and try.</p>
+        <p>That is what this profession means to me. Not the recognition. The showing up.</p>
+      `
     };
     popupBody.innerHTML = initiativeDetails[title] || `<p>${excerpt}</p>`;
 	    
