@@ -1,0 +1,76 @@
+{
+  "gallery": [
+    {
+      "id": "g1",
+      "src": "static_resources/images/gallery1.jpeg",
+      "alt": "Gallery Image 1",
+      "caption": "Hudson is probably the sweetest boy you could ever meet. We had the pleasure of seeing him today for a sore paw and updating his vaccines. As you can see, Hudson is all smiles!"
+    },
+    {
+      "id": "g2",
+      "src": "static_resources/images/gallery2.jpeg",
+      "alt": "Gallery Image 2",
+      "caption": "Regular checkup for our feline friends"
+    },
+    {
+      "id": "g3",
+      "src": "static_resources/images/gallery3.jpeg",
+      "alt": "Gallery Image 3",
+      "caption": "These 3 beautiful frenchies are only just a couple of hours old. They are the retirement litter of this beautiful mama, Nala."
+    },
+    {
+      "id": "g4",
+      "src": "static_resources/images/gallery4.jpeg",
+      "alt": "Gallery Image 4",
+      "caption": "Baby Snoopy (Shih-tzu/Yorkie) learning to be an assistant at MAH and greeting our clients with a very friendly attitude. 12/10 was a very good boy!"
+    },
+    {
+      "id": "g5",
+      "src": "static_resources/images/gallery5.jpeg",
+      "alt": "Gallery Image 5",
+      "caption": "Meet Coco and Chanel. These two beauties came in for a wellness examination, and are rescues residing with A Worthy Claws Rescue Society."
+    },
+    {
+      "id": "g6",
+      "src": "static_resources/images/gallery6.jpeg",
+      "alt": "Gallery Image 6",
+      "caption": "After 30 minutes of trying to revive them, they finally took their first breath. Ten puppies in total. All healthy, happy and back home with mom."
+    },
+    {
+      "id": "g7",
+      "src": "static_resources/images/gallery7.jpeg",
+      "alt": "Gallery Image 7",
+      "caption": "Our lovely, Kona, here for her first spa day. This beautiful girl belongs to one of our highly reputable French bulldog breeders."
+    },
+    {
+      "id": "g8",
+      "src": "static_resources/images/gallery8.jpeg",
+      "alt": "Gallery Image 8",
+      "caption": "Our beautiful Nala was our first ever artificial insemination. She is due any day now to deliver her puppies. We can't wait to meet her babies!"
+    },
+    {
+      "id": "g9",
+      "src": "static_resources/images/gallery9.jpeg",
+      "alt": "Gallery Image 9",
+      "caption": "A beautiful komondor puppy born via c-section on the evening of October 26, 2019. She is from a litter of 5 perfect puppies."
+    },
+    {
+      "id": "g10",
+      "src": "static_resources/images/gallery10.jpeg",
+      "alt": "Gallery Image 10",
+      "caption": "Callie (2 years) is another gem belonging to A Worthy Claws Rescue Society. She was rescued from terrible conditions from Alberta; and due to her previous life, she has a terrible heart condition. She is currently living her best life with her foster mom, and MAH employee, Kennedy!"
+    },
+    {
+      "id": "g11",
+      "src": "static_resources/images/gallery11.jpeg",
+      "alt": "Gallery Image 11",
+      "caption": "These 4 french bulldog gems belong to none other than Nala. She delivered 3 boys and 1 girl on October 18 2019 via c-section. Mom and her babies are happy, healthy and absolutely perfect. Congratulations, Nala!"
+    },
+    {
+      "id": "g12",
+      "src": "static_resources/images/gallery12.jpeg",
+      "alt": "Gallery Image 12",
+      "caption": "This handsome boy is Thomas. He had a very difficult life until he was rescued by A Voice 4 Paws Rescue Society, and is currently staying with his loving foster. Thomas came in for an ear hematoma on his left ear (indicated by his floppy ear)."
+    }
+  ]
+}

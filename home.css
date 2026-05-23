@@ -1,4 +1,4 @@
-/* General Styles */
+﻿/* General Styles */
 html {
   scroll-behavior: smooth;
 }
@@ -3000,6 +3000,12 @@ body.gallery-popup-open {
   transform: translateX(450px) scale(0.6); /* Increased from 350px */
 }
 
+.video-item.far-hidden {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* Video navigation buttons - transparent background */
 .video-nav,
 .prev-video,
@@ -5069,3 +5075,4 @@ html, body {
 .test{
   color:#028f90
 }
+

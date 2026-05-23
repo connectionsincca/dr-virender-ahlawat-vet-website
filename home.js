@@ -67,12 +67,8 @@
 	  // Update positions of all videos
 	  function updateVideoPositions() {
 		videoItems.forEach((item, index) => {
-		  // Remove all classes first
-		  item.classList.remove('active', 'prev', 'next', 'prev-hidden', 'next-hidden');
-		  
-		  // Calculate position relative to current
+		  item.classList.remove('active', 'prev', 'next', 'prev-hidden', 'next-hidden', 'far-hidden');
 		  const position = (index - currentVideoIndex + totalVideos) % totalVideos;
-		  
 		  if (position === 0) {
 			item.classList.add('active');
 		  } else if (position === 1 || position === (totalVideos - 1)) {
@@ -80,7 +76,7 @@
 		  } else if (position === 2 || position === (totalVideos - 2)) {
 			item.classList.add(position === 2 ? 'next-hidden' : 'prev-hidden');
 		  } else {
-			item.style.opacity = '0';
+			item.classList.add('far-hidden');
 		  }
 		});
 	  }

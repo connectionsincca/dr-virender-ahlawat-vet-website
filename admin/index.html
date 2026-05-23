@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Dr. Virender Ahlawat</title>
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ── LOGIN SCREEN ─────────────────────────────────────────────── -->
+  <div id="login-screen">
+    <div class="login-card">
+      <div class="login-logo">
+        <i class="fas fa-paw"></i>
+        <h1>Dr. Virender Ahlawat</h1>
+        <p>Website Admin Panel</p>
+      </div>
+
+      <!-- First-time setup -->
+      <div id="setup-panel" hidden>
+        <h2>First-Time Setup</h2>
+        <p class="setup-intro">Create your admin password and connect your GitHub account so changes publish automatically.</p>
+
+        <label>Admin Password
+          <input type="password" id="setup-pwd" placeholder="Choose a strong password" autocomplete="new-password">
+        </label>
+        <label>Confirm Password
+          <input type="password" id="setup-pwd2" placeholder="Repeat the password" autocomplete="new-password">
+        </label>
+        <label>
+          GitHub Personal Access Token
+          <input type="password" id="setup-pat" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+        </label>
+        <p class="hint">
+          <i class="fas fa-info-circle"></i>
+          Need a token? Go to <strong>github.com → Settings → Developer settings → Personal access tokens → Tokens (classic)</strong>. Create one with <strong>repo</strong> scope selected.
+        </p>
+
+        <button class="btn-primary" id="setup-btn">
+          <i class="fas fa-check"></i> Set Up Admin
+        </button>
+        <div class="auth-error" id="setup-error" hidden></div>
+      </div>
+
+      <!-- Normal login -->
+      <div id="login-panel">
+        <h2>Welcome Back</h2>
+        <label>Password
+          <input type="password" id="login-pwd" placeholder="Enter your admin password" autocomplete="current-password">
+        </label>
+        <button class="btn-primary" id="login-btn">
+          <i class="fas fa-sign-in-alt"></i> Log In
+        </button>
+        <div class="auth-error" id="login-error" hidden></div>
+        <button class="btn-text" id="reset-btn">Reset &amp; reconfigure</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ADMIN DASHBOARD ─────────────────────────────────────────── -->
+  <div id="admin-screen" hidden>
+
+    <header class="admin-header">
+      <div class="header-brand">
+        <i class="fas fa-paw"></i>
+        <span>Admin Panel</span>
+      </div>
+      <div class="header-actions">
+        <span id="save-status"></span>
+        <a href="../index.html" target="_blank" rel="noopener" class="btn-outline">
+          <i class="fas fa-external-link-alt"></i> View Site
+        </a>
+        <button class="btn-outline" id="logout-btn">
+          <i class="fas fa-sign-out-alt"></i> Log Out
+        </button>
+      </div>
+    </header>
+
+    <div class="admin-layout">
+
+      <!-- Sidebar -->
+      <nav class="admin-nav">
+        <button class="nav-btn active" data-section="testimonials">
+          <i class="fas fa-quote-left"></i>
+          <span>Testimonials</span>
+        </button>
+        <button class="nav-btn" data-section="videos">
+          <i class="fas fa-video"></i>
+          <span>Videos</span>
+        </button>
+        <button class="nav-btn" data-section="gallery">
+          <i class="fas fa-images"></i>
+          <span>Gallery</span>
+        </button>
+        <button class="nav-btn" data-section="blogs">
+          <i class="fas fa-pen-nib"></i>
+          <span>Blogs</span>
+        </button>
+      </nav>
+
+      <!-- Main content -->
+      <main class="admin-main" id="admin-main">
+        <div class="loading-overlay" id="loading-overlay" hidden>
+          <div class="spinner"></div>
+          <p id="loading-msg">Loading content from GitHub…</p>
+        </div>
+
+        <!-- ── TESTIMONIALS ────────────────────────────────────────── -->
+        <section id="section-testimonials" class="admin-section active">
+          <div class="section-header">
+            <h2><i class="fas fa-quote-left"></i> Testimonials</h2>
+            <button class="btn-primary" id="add-testimonial-btn">
+              <i class="fas fa-plus"></i> Add Testimonial
+            </button>
+          </div>
+
+          <!-- Add / Edit form (hidden by default) -->
+          <div class="item-form card" id="testimonial-form" hidden>
+            <h3 id="testimonial-form-title">New Testimonial</h3>
+            <input type="hidden" id="t-id">
+            <label>Quote Text <span class="req">*</span>
+              <textarea id="t-text" rows="4" placeholder="Enter the client's testimonial…"></textarea>
+            </label>
+            <div class="form-row">
+              <label>Author Name <span class="req">*</span>
+                <input type="text" id="t-author" placeholder="e.g. Jane Smith">
+              </label>
+              <label>Role / Pet Type <span class="req">*</span>
+                <input type="text" id="t-role" placeholder="e.g. Dog Parent">
+              </label>
+            </div>
+            <label>Profile Photo
+              <div class="photo-input-group">
+                <input type="file" id="t-photo-file" accept="image/*">
+                <span class="or-divider">or</span>
+                <input type="text" id="t-photo-url" placeholder="Paste an image URL (optional)">
+              </div>
+              <img id="t-photo-preview" class="photo-preview" src="" alt="" hidden>
+            </label>
+            <div class="form-actions">
+              <button class="btn-primary" id="t-save-btn"><i class="fas fa-save"></i> Save</button>
+              <button class="btn-ghost" id="t-cancel-btn">Cancel</button>
+            </div>
+          </div>
+
+          <div id="testimonials-list" class="items-list"></div>
+        </section>
+
+        <!-- ── VIDEOS ──────────────────────────────────────────────── -->
+        <section id="section-videos" class="admin-section">
+          <div class="section-header">
+            <h2><i class="fas fa-video"></i> Videos</h2>
+            <button class="btn-primary" id="add-video-btn">
+              <i class="fas fa-plus"></i> Add Video
+            </button>
+          </div>
+
+          <div class="item-form card" id="video-form" hidden>
+            <h3 id="video-form-title">New Video</h3>
+            <input type="hidden" id="v-id">
+            <label>YouTube URL or Video ID <span class="req">*</span>
+              <input type="text" id="v-videoid" placeholder="e.g. https://youtu.be/dQw4w9WgXcQ or just dQw4w9WgXcQ">
+            </label>
+            <div id="v-preview-wrap" hidden>
+              <img id="v-thumb" src="" alt="Video thumbnail" class="video-thumb-preview">
+            </div>
+            <label>Video Title <span class="req">*</span>
+              <input type="text" id="v-title" placeholder="e.g. Why Networking Matters?">
+            </label>
+            <div class="form-actions">
+              <button class="btn-primary" id="v-save-btn"><i class="fas fa-save"></i> Save</button>
+              <button class="btn-ghost" id="v-cancel-btn">Cancel</button>
+            </div>
+          </div>
+
+          <div id="videos-list" class="items-list"></div>
+        </section>
+
+        <!-- ── GALLERY ─────────────────────────────────────────────── -->
+        <section id="section-gallery" class="admin-section">
+          <div class="section-header">
+            <h2><i class="fas fa-images"></i> Gallery</h2>
+            <button class="btn-primary" id="add-gallery-btn">
+              <i class="fas fa-plus"></i> Add Photo
+            </button>
+          </div>
+
+          <div class="item-form card" id="gallery-form" hidden>
+            <h3 id="gallery-form-title">New Photo</h3>
+            <input type="hidden" id="g-id">
+            <label>Photo <span class="req">*</span>
+              <div class="photo-input-group">
+                <input type="file" id="g-photo-file" accept="image/*">
+                <span class="or-divider">or</span>
+                <input type="text" id="g-photo-url" placeholder="Paste an image URL">
+              </div>
+              <img id="g-photo-preview" class="photo-preview" src="" alt="" hidden>
+            </label>
+            <label>Caption
+              <textarea id="g-caption" rows="3" placeholder="Short description of the photo…"></textarea>
+            </label>
+            <label>Alt Text (for accessibility)
+              <input type="text" id="g-alt" placeholder="e.g. Dr. Virender with a golden retriever">
+            </label>
+            <div class="form-actions">
+              <button class="btn-primary" id="g-save-btn"><i class="fas fa-save"></i> Save</button>
+              <button class="btn-ghost" id="g-cancel-btn">Cancel</button>
+            </div>
+          </div>
+
+          <div id="gallery-grid-admin" class="gallery-admin-grid"></div>
+        </section>
+
+        <!-- ── BLOGS ───────────────────────────────────────────────── -->
+        <section id="section-blogs" class="admin-section">
+          <div class="section-header">
+            <h2><i class="fas fa-pen-nib"></i> Blogs</h2>
+            <button class="btn-primary" id="add-blog-btn">
+              <i class="fas fa-plus"></i> New Blog Post
+            </button>
+          </div>
+
+          <div class="item-form card wide-form" id="blog-form" hidden>
+            <h3 id="blog-form-title">New Blog Post</h3>
+            <input type="hidden" id="b-id">
+            <div class="form-row">
+              <label style="flex:3">Title <span class="req">*</span>
+                <input type="text" id="b-title" placeholder="e.g. The Quiet Wisdom of Animals">
+              </label>
+              <label style="flex:1">Highlighted Word <span class="req">*</span>
+                <input type="text" id="b-highlight" placeholder="e.g. Animals">
+              </label>
+            </div>
+            <label>Preview Text (first sentence shown before "Read More") <span class="req">*</span>
+              <textarea id="b-preview" rows="3" placeholder="Opening sentence or two that draws readers in…"></textarea>
+            </label>
+            <label>Preview Fade Text (second line that fades out)
+              <textarea id="b-preview-fade" rows="2" placeholder="Optional — one sentence that fades out below the preview…"></textarea>
+            </label>
+            <label>Full Article Content <span class="req">*</span>
+              <div class="editor-toolbar">
+                <button type="button" class="toolbar-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                <button type="button" class="toolbar-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                <button type="button" class="toolbar-btn" data-cmd="h4" title="Subheading">H4</button>
+                <button type="button" class="toolbar-btn" data-cmd="p" title="Paragraph">¶</button>
+                <button type="button" class="toolbar-btn" data-cmd="ul" title="List">≡</button>
+              </div>
+              <div id="b-content" class="rich-editor" contenteditable="true" spellcheck="true"></div>
+            </label>
+            <label>Cover Image
+              <div class="photo-input-group">
+                <input type="file" id="b-image-file" accept="image/*">
+                <span class="or-divider">or</span>
+                <input type="text" id="b-image-url" placeholder="Paste an image URL">
+              </div>
+              <img id="b-image-preview" class="photo-preview" src="" alt="" hidden>
+            </label>
+            <label>Image Alt Text
+              <input type="text" id="b-image-alt" placeholder="e.g. Dog and owner connection">
+            </label>
+            <div class="form-actions">
+              <button class="btn-primary" id="b-save-btn"><i class="fas fa-save"></i> Publish</button>
+              <button class="btn-ghost" id="b-cancel-btn">Cancel</button>
+            </div>
+          </div>
+
+          <div id="blogs-list" class="items-list"></div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ── CONFIRM DIALOG ──────────────────────────────────────────── -->
+  <div id="confirm-overlay" class="modal-overlay" hidden>
+    <div class="modal-box">
+      <p id="confirm-msg">Are you sure you want to delete this item?</p>
+      <div class="modal-actions">
+        <button class="btn-danger" id="confirm-yes">Delete</button>
+        <button class="btn-ghost" id="confirm-no">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
