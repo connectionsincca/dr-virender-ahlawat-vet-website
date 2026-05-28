@@ -19,7 +19,7 @@
       "text": "I would most definitely recommend the Murrayville Animal Hospital to anyone looking for vet services. We have had both our dogs treated here and have appreciated their kind and professional service.",
       "author": "Patti Thomas",
       "role": "Dog Parent",
-      "photo": "static_resources/images/placeholder-profile.jpg"
+      "photo": "static_resources/images/profile_1780008786948_Sagar.jpg"
     },
     {
       "id": "t4",
@@ -34,6 +34,13 @@
       "author": "Samuel Prevost",
       "role": "Pet Parent",
       "photo": "static_resources/images/placeholder-profile.jpg"
+    },
+    {
+      "id": "t1780008810639",
+      "text": "test",
+      "author": "test",
+      "role": "test",
+      "photo": "static_resources/images/profile_1780008809414_pngtree-cute-cartoon-emoji-presenting-a-sign-saying-please-for-messaging-apps-png-image_14338625.png"
     }
   ]
 }
