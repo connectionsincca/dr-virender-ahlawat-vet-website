@@ -14,7 +14,7 @@ let token    = null;   // GitHub PAT — lives in memory only
 let fileSHAs = {};     // path → current SHA (needed for GitHub API updates)
 let data = { testimonials: [], videos: [], gallery: [], blogs: [] };
 let pendingDeleteCb = null;
-let dirty = { testimonials: false, gallery: false, videos: false, blogs: false };
+let dirty = { testimonials: 0, gallery: 0, videos: 0, blogs: 0 };
 
 // ══════════════════════════════════════════════════════════════════════
 //  CRYPTO  (Web Crypto API — no external libraries)
@@ -197,13 +197,13 @@ async function uploadImage(filename, file) {
 //  DRAFT / PUBLISH
 // ══════════════════════════════════════════════════════════════════════
 function markDirty(section) {
-  dirty[section] = true;
+  dirty[section]++;
   updatePublishButton();
   updateNavDots();
 }
 
 function updatePublishButton() {
-  const count = Object.values(dirty).filter(Boolean).length;
+  const count = Object.values(dirty).reduce((a, b) => a + b, 0);
   const btn   = el('publish-btn');
   const badge = el('publish-count');
   if (count > 0) {
@@ -216,12 +216,12 @@ function updatePublishButton() {
 
 function updateNavDots() {
   ['testimonials', 'videos', 'gallery', 'blogs'].forEach(section => {
-    el('dot-' + section).hidden = !dirty[section];
+    el('dot-' + section).hidden = dirty[section] === 0;
   });
 }
 
 async function publishAll() {
-  const count = Object.values(dirty).filter(Boolean).length;
+  const count = Object.values(dirty).reduce((a, b) => a + b, 0);
   if (count === 0) return;
 
   setLoading(true, 'Publishing changes to website…');
@@ -249,7 +249,7 @@ async function publishAll() {
       await writeHTML('blogs.html', html, 'Publish blog updates via admin');
     }
 
-    Object.keys(dirty).forEach(k => dirty[k] = false);
+    Object.keys(dirty).forEach(k => dirty[k] = 0);
     updatePublishButton();
     updateNavDots();
     setSaveStatus('saved');
@@ -463,7 +463,7 @@ function setSaveStatus(state) {
   const s = el('save-status');
   s.className = state;
   if (state === 'saving') s.textContent = '⏳ Saving…';
-  if (state === 'saved')  { s.textContent = '✓ Saved'; setTimeout(() => s.textContent = '', 3500); }
+  if (state === 'saved')  { s.textContent = '✓ Published'; setTimeout(() => { s.textContent = ''; s.className = ''; }, 3500); }
   if (state === 'error')  s.textContent = '✗ Error';
 }
 
@@ -1002,7 +1002,7 @@ async function init() {
   el('logout-btn').addEventListener('click', logoutAdmin);
 
   window.addEventListener('beforeunload', e => {
-    if (Object.values(dirty).some(Boolean)) {
+    if (Object.values(dirty).some(v => v > 0)) {
       e.preventDefault();
       e.returnValue = '';
     }
