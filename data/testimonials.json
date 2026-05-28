@@ -5,7 +5,7 @@
       "text": "My experience at Murrayville veterinary hospital was amazing. They took time to exam my kitten so she would feel more at ease. The spayed went well. Cleo is healing nicely.",
       "author": "Jacqueline Burdeniuk",
       "role": "Cat Parent",
-      "photo": "static_resources/images/profile_1780008109829_cropped_circle_abhi.png"
+      "photo": "static_resources/images/profile_1780009148725_fcd2dfa237d47bf008f8f9569fedb51e.jpg"
     },
     {
       "id": "t2",
@@ -34,13 +34,6 @@
       "author": "Samuel Prevost",
       "role": "Pet Parent",
       "photo": "static_resources/images/placeholder-profile.jpg"
-    },
-    {
-      "id": "t1780008810639",
-      "text": "test",
-      "author": "test",
-      "role": "test",
-      "photo": "static_resources/images/profile_1780008809414_pngtree-cute-cartoon-emoji-presenting-a-sign-saying-please-for-messaging-apps-png-image_14338625.png"
     }
   ]
 }
