@@ -1,10 +1,38 @@
 {
   "testimonials": [
     {
-      "id": "t1779489240612",
-      "text": "I highly recommend this vet. The doctor and staff were friendly, professional, and very caring. The doctor took the time to explain everything clearly and even gave me a great deal. He completed the bloodwork, X-rays, medications, and all of the teeth extractions in the same visit, which I really appreciated. I will definitely be going back.",
-      "author": "Franki Esposito",
+      "id": "t1",
+      "text": "My experience at Murrayville veterinary hospital was amazing. They took time to exam my kitten so she would feel more at ease. The spayed went well. Cleo is healing nicely.",
+      "author": "Jacqueline Burdeniuk",
       "role": "Cat Parent",
+      "photo": "static_resources/images/profile1.jpg"
+    },
+    {
+      "id": "t2",
+      "text": "We had a wonderful experience at Murrayville Animal Hospital. We went in for a spay, and they discovered a cyst, which was explained thoroughly and handled professionally. Dr. Ahlawat is very passionate and attentive, and it’s clear the team genuinely cares about the animals. Highly recommend!",
+      "author": "Nicole Koo",
+      "role": "Dog Parent",
+      "photo": "static_resources/images/placeholder-profile.jpg"
+    },
+    {
+      "id": "t3",
+      "text": "I would most definitely recommend the Murrayville Animal Hospital to anyone looking for vet services. We have had both our dogs treated here and have appreciated their kind and professional service.",
+      "author": "Patti Thomas",
+      "role": "Dog Parent",
+      "photo": "static_resources/images/profile2.jpg"
+    },
+    {
+      "id": "t4",
+      "text": "We had a great experience at Murrayville Animal hospital having our puppy Murphy neutered. The receptionist was thorough at checkin going over all the options and everything was properly explained for after surgery care on pick-up",
+      "author": "Brett Symington",
+      "role": "Pet Parent",
+      "photo": "static_resources/images/placeholder-profile.jpg"
+    },
+    {
+      "id": "t5",
+      "text": "My girlfriend has been bringing her dog here for years and has always had great experiences! Now that we live together we have a dog as well as a kitten. Every appointment has been fantastic as the vets as well as the front desk have always made us feel comfortable and explained everything well!",
+      "author": "Samuel Prevost",
+      "role": "Pet Parent",
       "photo": "static_resources/images/placeholder-profile.jpg"
     }
   ]
