@@ -583,6 +583,19 @@ a:hover { text-decoration: underline; }
   align-self: center;
   font-size: 1.1rem;
 }
+.drag-handle:active { cursor: grabbing; }
+
+.item-row.dragging, .gallery-admin-item.dragging {
+  opacity: 0.4;
+  cursor: grabbing;
+}
+.item-row.drag-over {
+  border-top: 2px solid var(--brand);
+}
+.gallery-admin-item.drag-over {
+  outline: 2px solid var(--brand);
+  outline-offset: -2px;
+}
 
 /* ─── VIDEO THUMBNAIL PREVIEW ────────────────────────────────────────── */
 .video-thumb-preview {

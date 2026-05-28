@@ -507,6 +507,53 @@ function wirePhotoInput(fileInputId, urlInputId, previewId) {
 }
 
 // ══════════════════════════════════════════════════════════════════════
+//  DRAG-AND-DROP REORDER
+// ══════════════════════════════════════════════════════════════════════
+function initDragSort(containerId, itemSelector, dataArray, sectionName, renderFn) {
+  const container = el(containerId);
+  if (!container) return;
+  let dragSrc = null;
+
+  container.querySelectorAll(itemSelector).forEach(item => {
+    item.draggable = true;
+
+    item.addEventListener('dragstart', e => {
+      dragSrc = item;
+      e.dataTransfer.effectAllowed = 'move';
+      setTimeout(() => item.classList.add('dragging'), 0);
+    });
+
+    item.addEventListener('dragend', () => {
+      item.classList.remove('dragging');
+      container.querySelectorAll(itemSelector).forEach(i => i.classList.remove('drag-over'));
+    });
+
+    item.addEventListener('dragover', e => {
+      e.preventDefault();
+      if (item !== dragSrc) {
+        container.querySelectorAll(itemSelector).forEach(i => i.classList.remove('drag-over'));
+        item.classList.add('drag-over');
+      }
+    });
+
+    item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
+
+    item.addEventListener('drop', e => {
+      e.preventDefault();
+      item.classList.remove('drag-over');
+      if (!dragSrc || dragSrc === item) return;
+      const srcIdx = dataArray.findIndex(x => x.id === dragSrc.dataset.id);
+      const dstIdx = dataArray.findIndex(x => x.id === item.dataset.id);
+      if (srcIdx === -1 || dstIdx === -1) return;
+      const [moved] = dataArray.splice(srcIdx, 1);
+      dataArray.splice(dstIdx, 0, moved);
+      markDirty(sectionName);
+      renderFn();
+    });
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════
 //  TESTIMONIALS UI
 // ══════════════════════════════════════════════════════════════════════
 function renderTestimonials() {
@@ -533,6 +580,7 @@ function renderTestimonials() {
       </div>
     </div>
   `).join('');
+  initDragSort('testimonials-list', '.item-row', data.testimonials, 'testimonials', renderTestimonials);
 }
 
 function showTestimonialForm(t) {
@@ -648,6 +696,7 @@ function renderVideos() {
       </div>
     </div>
   `).join('');
+  initDragSort('videos-list', '.item-row', data.videos, 'videos', renderVideos);
 }
 
 function showVideoForm(v) {
@@ -730,6 +779,7 @@ function renderGallery() {
       </div>
     </div>
   `).join('');
+  initDragSort('gallery-grid-admin', '.gallery-admin-item', data.gallery, 'gallery', renderGallery);
 }
 
 function showGalleryForm(g) {
@@ -824,6 +874,7 @@ function renderBlogs() {
       </div>
     </div>
   `).join('');
+  initDragSort('blogs-list', '.item-row', data.blogs, 'blogs', renderBlogs);
 }
 
 function showBlogForm(b) {
