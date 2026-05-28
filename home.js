@@ -179,19 +179,22 @@
 		const newIndex = direction === 'next' 
 			? (currentTestimonial + 1) % totalItems 
 			: (currentTestimonial - 1 + totalItems) % totalItems;
-		
-		// Update current index
 		currentTestimonial = newIndex;
-		
-		// Update all cards' positions with increased spacing
 		for (let i = 0; i < totalItems; i++) {
 			const offset = (i - currentTestimonial + totalItems) % totalItems;
-			const zIndex = 3 - ((offset + 1) % 3);
-			
-			// Doubled the transform values for larger gaps
-			items[i].style.transform = `translateZ(${-40 * ((offset + 2) % 3)}px) translateY(${20 * ((offset + 2) % 3)}px)`;
-			items[i].style.filter = `brightness(${1 - (0.1 * ((offset + 2) % 3))})`;
-			items[i].style.zIndex = String(zIndex);
+			if (offset >= 3) {
+				// Hide items beyond the visible 3-card stack
+				items[i].style.opacity = '0';
+				items[i].style.zIndex = '-1';
+				items[i].style.transform = 'translateZ(-80px) translateY(40px)';
+				items[i].style.filter = 'brightness(0.8)';
+			} else {
+				const pos = (offset + 2) % 3;
+				items[i].style.opacity = '1';
+				items[i].style.transform = `translateZ(${-40 * pos}px) translateY(${20 * pos}px)`;
+				items[i].style.filter = `brightness(${1 - (0.1 * pos)})`;
+				items[i].style.zIndex = String(3 - ((offset + 1) % 3));
+			}
 		}
 	}
 
