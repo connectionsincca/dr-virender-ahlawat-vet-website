@@ -14,6 +14,7 @@ let token    = null;   // GitHub PAT — lives in memory only
 let fileSHAs = {};     // path → current SHA (needed for GitHub API updates)
 let data = { testimonials: [], videos: [], gallery: [], blogs: [] };
 let pendingDeleteCb = null;
+let dirty = { testimonials: false, gallery: false, videos: false, blogs: false };
 
 // ══════════════════════════════════════════════════════════════════════
 //  CRYPTO  (Web Crypto API — no external libraries)
@@ -190,6 +191,74 @@ async function uploadImage(filename, file) {
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  DRAFT / PUBLISH
+// ══════════════════════════════════════════════════════════════════════
+function markDirty(section) {
+  dirty[section] = true;
+  updatePublishButton();
+  updateNavDots();
+}
+
+function updatePublishButton() {
+  const count = Object.values(dirty).filter(Boolean).length;
+  const btn   = el('publish-btn');
+  const badge = el('publish-count');
+  if (count > 0) {
+    badge.textContent = count;
+    btn.hidden = false;
+  } else {
+    btn.hidden = true;
+  }
+}
+
+function updateNavDots() {
+  ['testimonials', 'videos', 'gallery', 'blogs'].forEach(section => {
+    el('dot-' + section).hidden = !dirty[section];
+  });
+}
+
+async function publishAll() {
+  const count = Object.values(dirty).filter(Boolean).length;
+  if (count === 0) return;
+
+  setLoading(true, 'Publishing changes to website…');
+  try {
+    if (dirty.testimonials) await writeJSON('data/testimonials.json', { testimonials: data.testimonials }, 'Update testimonials via admin');
+    if (dirty.gallery)      await writeJSON('data/gallery.json',      { gallery: data.gallery },           'Update gallery via admin');
+    if (dirty.videos)       await writeJSON('data/videos.json',       { videos: data.videos },             'Update videos via admin');
+    if (dirty.blogs)        await writeJSON('data/blogs.json',        { blogs: data.blogs },               'Update blogs via admin');
+
+    if (dirty.testimonials || dirty.gallery || dirty.videos) {
+      let html = await readHTML('index.html');
+      if (dirty.testimonials) {
+        html = replaceMarker(html, 'TESTIMONIALS', genTestimonialsHTML(data.testimonials));
+        html = replaceMarker(html, 'INDICATORS',   genIndicatorsHTML(data.testimonials.length));
+      }
+      if (dirty.gallery) html = replaceMarker(html, 'GALLERY', genGalleryHTML(data.gallery));
+      if (dirty.videos)  html = replaceMarker(html, 'VIDEOS',  genVideosHTML(data.videos));
+      await writeHTML('index.html', html, 'Publish content updates via admin');
+    }
+
+    if (dirty.blogs) {
+      let html = await readHTML('blogs.html');
+      html = replaceMarker(html, 'BLOGS_LIST', genBlogsListHTML(data.blogs));
+      html = replaceMarker(html, 'BLOGS_MENU', genBlogsMenuHTML(data.blogs));
+      await writeHTML('blogs.html', html, 'Publish blog updates via admin');
+    }
+
+    Object.keys(dirty).forEach(k => dirty[k] = false);
+    updatePublishButton();
+    updateNavDots();
+    setSaveStatus('saved');
+  } catch (err) {
+    setSaveStatus('error');
+    alert('Publish failed: ' + err.message);
+  } finally {
+    setLoading(false);
+  }
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -511,7 +580,7 @@ async function saveTestimonialForm() {
     if (idx >= 0) data.testimonials[idx] = entry;
     else          data.testimonials.push(entry);
 
-    await saveTestimonials();
+    markDirty('testimonials');
     hideTestimonialForm();
     renderTestimonials();
   } catch (err) {
@@ -529,7 +598,7 @@ function editTestimonial(id) {
 function deleteTestimonial(id) {
   confirmDelete('Delete this testimonial? This cannot be undone.', async () => {
     data.testimonials = data.testimonials.filter(t => t.id !== id);
-    await saveTestimonials();
+    markDirty('testimonials');
     renderTestimonials();
   });
 }
@@ -610,7 +679,7 @@ async function saveVideoForm() {
   if (idx >= 0) data.videos[idx] = entry;
   else          data.videos.push(entry);
 
-  await saveVideos();
+  markDirty('videos');
   hideVideoForm();
   renderVideos();
 }
@@ -620,7 +689,7 @@ function editVideo(id) { showVideoForm(data.videos.find(v => v.id === id)); }
 function deleteVideo(id) {
   confirmDelete('Delete this video?', async () => {
     data.videos = data.videos.filter(v => v.id !== id);
-    await saveVideos();
+    markDirty('videos');
     renderVideos();
   });
 }
@@ -707,7 +776,7 @@ async function saveGalleryForm() {
     if (idx >= 0) data.gallery[idx] = entry;
     else          data.gallery.push(entry);
 
-    await saveGallery();
+    markDirty('gallery');
     hideGalleryForm();
     renderGallery();
   } catch (err) {
@@ -723,7 +792,7 @@ function editGalleryItem(id) { showGalleryForm(data.gallery.find(g => g.id === i
 function deleteGalleryItem(id) {
   confirmDelete('Delete this photo from the gallery?', async () => {
     data.gallery = data.gallery.filter(g => g.id !== id);
-    await saveGallery();
+    markDirty('gallery');
     renderGallery();
   });
 }
@@ -814,7 +883,7 @@ async function saveBlogForm() {
     if (idx >= 0) data.blogs[idx] = entry;
     else          data.blogs.push(entry);
 
-    await saveBlogs();
+    markDirty('blogs');
     hideBlogForm();
     renderBlogs();
   } catch (err) {
@@ -830,7 +899,7 @@ function editBlog(id) { showBlogForm(data.blogs.find(b => b.id === id)); }
 function deleteBlog(id) {
   confirmDelete('Delete this blog post permanently?', async () => {
     data.blogs = data.blogs.filter(b => b.id !== id);
-    await saveBlogs();
+    markDirty('blogs');
     renderBlogs();
   });
 }
@@ -929,7 +998,15 @@ async function init() {
   // Allow Enter key to submit login
   el('login-pwd').addEventListener('keydown', e => { if (e.key === 'Enter') el('login-btn').click(); });
 
+  el('publish-btn').addEventListener('click', publishAll);
   el('logout-btn').addEventListener('click', logoutAdmin);
+
+  window.addEventListener('beforeunload', e => {
+    if (Object.values(dirty).some(Boolean)) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+  });
   el('reset-btn').addEventListener('click', resetAdmin);
 
   // Section navigation
@@ -977,6 +1054,8 @@ function renderAll() {
   renderVideos();
   renderGallery();
   renderBlogs();
+  updatePublishButton();
+  updateNavDots();
 }
 
 document.addEventListener('DOMContentLoaded', init);

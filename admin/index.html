@@ -69,6 +69,9 @@
       </div>
       <div class="header-actions">
         <span id="save-status"></span>
+        <button class="btn-publish" id="publish-btn" hidden>
+          <i class="fas fa-cloud-upload-alt"></i> Publish <span class="publish-badge" id="publish-count">0</span>
+        </button>
         <a href="../index.html" target="_blank" rel="noopener" class="btn-outline">
           <i class="fas fa-external-link-alt"></i> View Site
         </a>
@@ -85,18 +88,22 @@
         <button class="nav-btn active" data-section="testimonials">
           <i class="fas fa-quote-left"></i>
           <span>Testimonials</span>
+          <span class="nav-dot" id="dot-testimonials" hidden></span>
         </button>
         <button class="nav-btn" data-section="videos">
           <i class="fas fa-video"></i>
           <span>Videos</span>
+          <span class="nav-dot" id="dot-videos" hidden></span>
         </button>
         <button class="nav-btn" data-section="gallery">
           <i class="fas fa-images"></i>
           <span>Gallery</span>
+          <span class="nav-dot" id="dot-gallery" hidden></span>
         </button>
         <button class="nav-btn" data-section="blogs">
           <i class="fas fa-pen-nib"></i>
           <span>Blogs</span>
+          <span class="nav-dot" id="dot-blogs" hidden></span>
         </button>
       </nav>
 

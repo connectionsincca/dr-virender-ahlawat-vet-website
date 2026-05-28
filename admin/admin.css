@@ -181,6 +181,37 @@ a:hover { text-decoration: underline; }
 }
 .btn-outline:hover { border-color: var(--brand); background: var(--brand-light); text-decoration: none; }
 
+.btn-publish {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), transform 0.1s;
+  animation: pulse-publish 2s infinite;
+}
+.btn-publish:hover { background: #027a7b; transform: translateY(-1px); animation: none; }
+.publish-badge {
+  background: #fff;
+  color: var(--brand);
+  border-radius: 99px;
+  font-size: .75rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  min-width: 20px;
+  text-align: center;
+}
+@keyframes pulse-publish {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(2,143,144,.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(2,143,144,0); }
+}
+
 .btn-ghost {
   display: inline-flex;
   align-items: center;
@@ -306,6 +337,14 @@ a:hover { text-decoration: underline; }
 }
 .nav-btn i { width: 18px; text-align: center; }
 .nav-btn:hover { background: var(--bg); color: var(--text); }
+.nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand);
+  margin-left: auto;
+  flex-shrink: 0;
+}
 .nav-btn.active {
   background: var(--brand-light);
   color: var(--brand);
