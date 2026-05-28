@@ -36,8 +36,8 @@
       "highlightWord": "test",
       "previewText": "test",
       "previewFade": "test",
-      "content": "TEST",
-      "image": "static_resources/images/blog_1780005500015_homepage.png",
+      "content": "TEST<span style=\"font-weight: normal;\">ING....TESTING.....123</span>",
+      "image": "static_resources/images/blog_1780008845813_damage-to-my-car.jpeg",
       "imageAlt": "aaa"
     }
   ]
