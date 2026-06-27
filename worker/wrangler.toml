@@ -1,0 +1,7 @@
+name = "admin-auth"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "ADMIN_CONFIG"
+id = "be1a1a921ad6474ba4aeb16c97ddd974"

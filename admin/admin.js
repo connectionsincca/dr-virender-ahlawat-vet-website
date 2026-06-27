@@ -3,9 +3,10 @@
 // ══════════════════════════════════════════════════════════════════════
 //  CONFIG
 // ══════════════════════════════════════════════════════════════════════
-const REPO   = 'connectionsincca/dr-virender-ahlawat-vet-website';
-const BRANCH = 'feature/admin-panel';
-const API    = `https://api.github.com/repos/${REPO}/contents`;
+const REPO         = 'connectionsincca/dr-virender-ahlawat-vet-website';
+const BRANCH       = 'main';
+const API          = `https://api.github.com/repos/${REPO}/contents`;
+const WORKER_URL   = 'https://admin-auth.connectionsincca.workers.dev';
 
 // ══════════════════════════════════════════════════════════════════════
 //  STATE
@@ -54,28 +55,44 @@ async function hashText(text) {
 }
 
 // ══════════════════════════════════════════════════════════════════════
+//  WORKER API
+// ══════════════════════════════════════════════════════════════════════
+async function workerRequest(path, body) {
+  const res = await fetch(`${WORKER_URL}${path}`, {
+    method: body ? 'POST' : 'GET',
+    headers: { 'Content-Type': 'application/json' },
+    body: body ? JSON.stringify(body) : undefined
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
+  return data;
+}
+
+// ══════════════════════════════════════════════════════════════════════
 //  AUTH
 // ══════════════════════════════════════════════════════════════════════
-function isFirstTime() {
-  return !localStorage.getItem('admin_hash');
+async function isFirstTime() {
+  const { configured } = await workerRequest('/status');
+  return !configured;
 }
 
 async function setupAdmin(password, pat) {
-  const hash       = await hashText(password);
-  const encryptedPAT = await encryptText(pat, password);
-  localStorage.setItem('admin_hash',    hash);
-  localStorage.setItem('admin_enc_pat', encryptedPAT);
+  const passwordHash    = await hashText(password);
+  const encryptedToken  = await encryptText(pat, password);
+  await workerRequest('/setup', { passwordHash, encryptedToken });
 }
 
 async function loginAdmin(password) {
-  const storedHash = localStorage.getItem('admin_hash');
-  const encPAT     = localStorage.getItem('admin_enc_pat');
-  if (!storedHash || !encPAT) throw new Error('No admin configured.');
+  const passwordHash = await hashText(password);
+  const { encryptedToken } = await workerRequest('/login', { passwordHash });
+  token = await decryptText(encryptedToken, password);
+}
 
-  const enteredHash = await hashText(password);
-  if (enteredHash !== storedHash) throw new Error('Incorrect password.');
-
-  token = await decryptText(encPAT, password);
+async function changePassword(oldPassword, newPassword) {
+  const oldPasswordHash    = await hashText(oldPassword);
+  const newPasswordHash    = await hashText(newPassword);
+  const newEncryptedToken  = await encryptText(token, newPassword);
+  await workerRequest('/change-password', { oldPasswordHash, newPasswordHash, newEncryptedToken });
 }
 
 function logoutAdmin() {
@@ -86,9 +103,7 @@ function logoutAdmin() {
 }
 
 function resetAdmin() {
-  if (!confirm('This will clear all saved credentials. You will need to enter your GitHub token again. Continue?')) return;
-  localStorage.removeItem('admin_hash');
-  localStorage.removeItem('admin_enc_pat');
+  if (!confirm('This will log you out. To reconfigure, contact your web developer. Continue?')) return;
   token = null;
   showAuthScreen();
 }
@@ -979,13 +994,20 @@ function wireEditorToolbar() {
 // ══════════════════════════════════════════════════════════════════════
 //  AUTH SCREEN LOGIC
 // ══════════════════════════════════════════════════════════════════════
-function showAuthScreen() {
+async function showAuthScreen() {
   show('login-screen');
   hide('admin-screen');
-  if (isFirstTime()) {
-    show('setup-panel');
-    hide('login-panel');
-  } else {
+  try {
+    const firstTime = await isFirstTime();
+    if (firstTime) {
+      show('setup-panel');
+      hide('login-panel');
+    } else {
+      hide('setup-panel');
+      show('login-panel');
+    }
+  } catch {
+    // If Worker unreachable, default to login panel
     hide('setup-panel');
     show('login-panel');
   }
@@ -996,25 +1018,25 @@ function showAuthScreen() {
 // ══════════════════════════════════════════════════════════════════════
 async function init() {
   // Auth screen
-  showAuthScreen();
+  await showAuthScreen();
 
   // Setup form
   el('setup-btn').addEventListener('click', async () => {
-    const pwd  = el('setup-pwd').value;
-    const pwd2 = el('setup-pwd2').value;
-    const pat  = el('setup-pat').value.trim();
+    const pwd   = el('setup-pwd').value;
+    const pwd2  = el('setup-pwd2').value;
+    const pat   = el('setup-pat').value.trim();
     const errEl = el('setup-error');
 
     hide(errEl.id);
     if (!pwd || pwd.length < 6) { errEl.textContent = 'Password must be at least 6 characters.'; show(errEl.id); return; }
     if (pwd !== pwd2)           { errEl.textContent = 'Passwords do not match.'; show(errEl.id); return; }
-    if (!pat)                   { errEl.textContent = 'Please enter your GitHub Personal Access Token.'; show(errEl.id); return; }
+    if (!pat)                   { errEl.textContent = 'Please enter the GitHub token.'; show(errEl.id); return; }
 
     const btn = el('setup-btn');
     btn.disabled = true; btn.textContent = 'Setting up…';
     try {
       await setupAdmin(pwd, pat);
-      token = pat;
+      await loginAdmin(pwd);
       hide('login-screen');
       show('admin-screen');
       await loadAll();
@@ -1098,6 +1120,32 @@ async function init() {
   el('b-cancel-btn').addEventListener('click', hideBlogForm);
   wirePhotoInput('b-image-file', 'b-image-url', 'b-image-preview');
   wireEditorToolbar();
+
+  // Change password
+  el('cp-btn').addEventListener('click', async () => {
+    const oldPwd  = el('cp-old').value;
+    const newPwd  = el('cp-new').value;
+    const newPwd2 = el('cp-new2').value;
+    const errEl   = el('cp-error');
+    const okEl    = el('cp-success');
+
+    hide(errEl.id); hide(okEl.id);
+    if (!oldPwd)              { errEl.textContent = 'Enter your current password.'; show(errEl.id); return; }
+    if (newPwd.length < 6)   { errEl.textContent = 'New password must be at least 6 characters.'; show(errEl.id); return; }
+    if (newPwd !== newPwd2)  { errEl.textContent = 'New passwords do not match.'; show(errEl.id); return; }
+
+    const btn = el('cp-btn');
+    btn.disabled = true; btn.textContent = 'Updating…';
+    try {
+      await changePassword(oldPwd, newPwd);
+      el('cp-old').value = ''; el('cp-new').value = ''; el('cp-new2').value = '';
+      show(okEl.id);
+    } catch (err) {
+      errEl.textContent = err.message; show(errEl.id);
+    } finally {
+      btn.disabled = false; btn.innerHTML = '<i class="fas fa-key"></i> Change Password';
+    }
+  });
 }
 
 function renderAll() {
