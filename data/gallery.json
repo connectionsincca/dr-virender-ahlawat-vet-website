@@ -7,10 +7,10 @@
       "caption": "Hudson is probably the sweetest boy you could ever meet. We had the pleasure of seeing him today for a sore paw and updating his vaccines. As you can see, Hudson is all smiles!"
     },
     {
-      "id": "g2",
-      "src": "static_resources/images/gallery2.jpeg",
-      "alt": "Gallery Image 2",
-      "caption": "Regular checkup for our feline friends"
+      "id": "g4",
+      "src": "static_resources/images/gallery4.jpeg",
+      "alt": "Gallery Image 4",
+      "caption": "Baby Snoopy (Shih-tzu/Yorkie) learning to be an assistant at MAH and greeting our clients with a very friendly attitude. 12/10 was a very good boy!"
     },
     {
       "id": "g3",
@@ -19,10 +19,10 @@
       "caption": "These 3 beautiful frenchies are only just a couple of hours old. They are the retirement litter of this beautiful mama, Nala."
     },
     {
-      "id": "g4",
-      "src": "static_resources/images/gallery4.jpeg",
-      "alt": "Gallery Image 4",
-      "caption": "Baby Snoopy (Shih-tzu/Yorkie) learning to be an assistant at MAH and greeting our clients with a very friendly attitude. 12/10 was a very good boy!"
+      "id": "g2",
+      "src": "static_resources/images/gallery2.jpeg",
+      "alt": "Gallery Image 2",
+      "caption": "Regular checkup for our feline friends"
     },
     {
       "id": "g5",
@@ -43,6 +43,12 @@
       "caption": "Our lovely, Kona, here for her first spa day. This beautiful girl belongs to one of our highly reputable French bulldog breeders."
     },
     {
+      "id": "g11",
+      "src": "static_resources/images/gallery11.jpeg",
+      "alt": "Gallery Image 11",
+      "caption": "These 4 french bulldog gems belong to none other than Nala. She delivered 3 boys and 1 girl on October 18 2019 via c-section. Mom and her babies are happy, healthy and absolutely perfect. Congratulations, Nala!"
+    },
+    {
       "id": "g8",
       "src": "static_resources/images/gallery8.jpeg",
       "alt": "Gallery Image 8",
@@ -61,16 +67,22 @@
       "caption": "Callie (2 years) is another gem belonging to A Worthy Claws Rescue Society. She was rescued from terrible conditions from Alberta; and due to her previous life, she has a terrible heart condition. She is currently living her best life with her foster mom, and MAH employee, Kennedy!"
     },
     {
-      "id": "g11",
-      "src": "static_resources/images/gallery11.jpeg",
-      "alt": "Gallery Image 11",
-      "caption": "These 4 french bulldog gems belong to none other than Nala. She delivered 3 boys and 1 girl on October 18 2019 via c-section. Mom and her babies are happy, healthy and absolutely perfect. Congratulations, Nala!"
-    },
-    {
       "id": "g12",
       "src": "static_resources/images/gallery12.jpeg",
       "alt": "Gallery Image 12",
       "caption": "This handsome boy is Thomas. He had a very difficult life until he was rescued by A Voice 4 Paws Rescue Society, and is currently staying with his loving foster. Thomas came in for an ear hematoma on his left ear (indicated by his floppy ear)."
+    },
+    {
+      "id": "g1780009283421",
+      "src": "static_resources/images/gallery_1780009281694_il_fullxfull.5175843556_g1b0.webp",
+      "alt": "Gallery Image",
+      "caption": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "g1780009308804",
+      "src": "static_resources/images/gallery_1780009307627_aashutosh.jpeg",
+      "alt": "Gallery Image",
+      "caption": "dddddddddddddddddddddddddddddd"
     }
   ]
 }

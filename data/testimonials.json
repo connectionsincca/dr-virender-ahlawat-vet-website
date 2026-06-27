@@ -1,25 +1,25 @@
 {
   "testimonials": [
     {
-      "id": "t1",
-      "text": "My experience at Murrayville veterinary hospital was amazing. They took time to exam my kitten so she would feel more at ease. The spayed went well. Cleo is healing nicely.",
-      "author": "Jacqueline Burdeniuk",
-      "role": "Cat Parent",
-      "photo": "static_resources/images/profile1.jpg"
-    },
-    {
       "id": "t2",
-      "text": "We had a wonderful experience at Murrayville Animal Hospital. We went in for a spay, and they discovered a cyst, which was explained thoroughly and handled professionally. Dr. Ahlawat is very passionate and attentive, and it\u2019s clear the team genuinely cares about the animals. Highly recommend!",
+      "text": "We had a wonderful experience at Murrayville Animal Hospital. We went in for a spay, and they discovered a cyst, which was explained thoroughly and handled professionally. Dr. Ahlawat is very passionate and attentive, and it’s clear the team genuinely cares about the animals. Highly recommend!",
       "author": "Nicole Koo",
       "role": "Dog Parent",
-      "photo": "static_resources/images/placeholder-profile.jpg"
+      "photo": "static_resources/images/profile_1780008121041_cropped_circle_varun.png"
     },
     {
       "id": "t3",
       "text": "I would most definitely recommend the Murrayville Animal Hospital to anyone looking for vet services. We have had both our dogs treated here and have appreciated their kind and professional service.",
       "author": "Patti Thomas",
       "role": "Dog Parent",
-      "photo": "static_resources/images/placeholder-profile.jpg"
+      "photo": "static_resources/images/profile_1780008786948_Sagar.jpg"
+    },
+    {
+      "id": "t1",
+      "text": "My experience at Murrayville veterinary hospital was amazing. They took time to exam my kitten so she would feel more at ease. The spayed went well. Cleo is healing nicely.",
+      "author": "Jacqueline Burdeniuk",
+      "role": "Cat Parent",
+      "photo": "static_resources/images/profile_1780009148725_fcd2dfa237d47bf008f8f9569fedb51e.jpg"
     },
     {
       "id": "t4",
