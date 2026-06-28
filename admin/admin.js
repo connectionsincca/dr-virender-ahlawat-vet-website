@@ -6,7 +6,7 @@
 const REPO         = 'connectionsincca/dr-virender-ahlawat-vet-website';
 const BRANCH       = 'main';
 const API          = `https://api.github.com/repos/${REPO}/contents`;
-const WORKER_URL   = 'https://admin-auth.connectionsincca.workers.dev';
+const WORKER_URL   = 'https://admin-auth.royal-mud-fed3.workers.dev';
 
 // ══════════════════════════════════════════════════════════════════════
 //  STATE
